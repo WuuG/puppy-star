@@ -1,0 +1,23 @@
+{
+  "name": "@byteinspire-template/koa",
+  "version": "0.0.5",
+  "files": [
+    "*",
+    "!.*",
+    ".gitignore"
+  ],
+  "dependencies": {
+    "@byteinspire/api": "^1.0.5",
+    "@koa/router": "^8.0.2",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-static": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {},
+  "license": "ISC",
+  "scripts": {}
+}
