@@ -51,12 +51,3 @@ project
   |- package.json    # npm 的通用配置文件
   |- .gitignore      # Git 管理时标识忽略内容的文件
 ```
-
-## 反馈
-
-有任何问题和建议，欢迎使用飞书扫描下方二维码，加入官方支持群反馈。
-
-![lark-group](https://lf3-static.bytednsdoc.com/obj/eden-cn/fuvazli/lark-group-blank.jpeg)
-
----
-Powered By [轻服务 - 面向未来的云服务](https://qingfuwu.cn)
