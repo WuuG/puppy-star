@@ -2,6 +2,7 @@ const path = require('path');
 const koaBody = require('koa-body');
 const koaStatic = require('koa-static');
 const todoRouter = require('./routers/todo');
+const messageRouter = require('./routers/messageCode');
 const Koa = require('koa');
 const app = new Koa();
 
@@ -31,5 +32,6 @@ app.use(async function errorHandler(ctx, next) {
 // 为应用使用路由定义
 // 使用待办事项业务路由
 app.use(todoRouter);
+app.use(messageRouter);
 
 module.exports = app;

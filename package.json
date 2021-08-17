@@ -8,10 +8,15 @@
   ],
   "dependencies": {
     "@byteinspire/api": "^1.0.5",
+    "@byteinspire/js-sdk": "^0.2.3",
     "@koa/router": "^8.0.2",
+    "js-base64": "^3.6.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "request": "^2.88.2"
   },
   "publishConfig": {
     "access": "public",

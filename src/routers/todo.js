@@ -15,4 +15,4 @@ router.delete('/:id', todoController.delete);
 router.delete('/', todoController.deleteAll);
 
 // Koa 的路由需要调用 routes 函数获取实际用于 use 的函数
-module.exports = router.routes();
+module.exports = router.routes(); // router.routes 返回一个函数
