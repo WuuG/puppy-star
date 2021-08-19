@@ -11,8 +11,8 @@ const articleControl = require("../controllers/articleControl");
  * @swagger
  * /api/article/:
  *   get:
- *     summary: 获取最新的文章
- *     description: 获取最新文章
+ *     summary: 获取最新的动态
+ *     description: 获取最新动态
  *     tags:
  *       - article
  *     parameters:
@@ -30,6 +30,36 @@ const articleControl = require("../controllers/articleControl");
  *         description: 成功获取
  */
 router.get("/", articleControl.listArticle);
+
+/**
+ * @swagger
+ * /api/article/:
+ *  post:
+ *     summary: 推送一条动态
+ *     tags:
+ *       - article
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: "object"
+ *           required:
+ *           - id
+ *           properties:
+ *             id:
+ *               type: string
+ *             text:
+ *               type: string
+ *             image:
+ *               type: Array
+ *             video:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: 成功获取
+ *
+ */
 router.post("/", articleControl.createArticel);
 
 // Koa 的路由需要调用 routes 函数获取实际用于 use 的函数
