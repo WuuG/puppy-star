@@ -10,6 +10,7 @@
     "@byteinspire/api": "^1.0.5",
     "@byteinspire/js-sdk": "^0.2.3",
     "@koa/router": "^8.0.2",
+    "chalk": "^4.1.2",
     "js-base64": "^3.6.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
