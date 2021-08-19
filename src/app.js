@@ -3,6 +3,9 @@ const koaBody = require("koa-body");
 const koaStatic = require("koa-static");
 const Koa = require("koa");
 const app = new Koa();
+// swagger
+const { koaSwagger } = require("koa2-swagger-ui");
+const swaggerRouter = require("./utils/swagger");
 
 // router
 const todoRouter = require("./routers/todo");
@@ -31,6 +34,18 @@ app.use(async function errorHandler(ctx, next) {
     ctx.body = { error: err.message };
   }
 });
+
+/**
+ * swagger配置
+ */
+app.use(swaggerRouter.routes()).use(swaggerRouter.allowedMethods());
+const swaggerOption = {
+  routePrefix: "/swagger", // host at /swagger instead of default /docs
+  swaggerOptions: {
+    url: "/swagger/swagger.json", // example path to json 其实就是之后swagger-jsdoc生成的文档地址,这个地址是通过@koa/router生成的
+  },
+};
+app.use(koaSwagger(swaggerOption));
 
 // 为应用使用路由定义
 // 使用待办事项业务路由

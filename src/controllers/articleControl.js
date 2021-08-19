@@ -19,7 +19,7 @@ class ArticleControl {
       limit: Number(limit),
     };
     const list = await articleService.getArticle(params, ctx);
-    ctx.body = { list };
+    ctx.body = { data: list };
   }
 
   /**
