@@ -1,14 +1,17 @@
-const path = require('path');
-const koaBody = require('koa-body');
-const koaStatic = require('koa-static');
-const todoRouter = require('./routers/todo');
-const messageRouter = require('./routers/messageCode');
-const Koa = require('koa');
+const path = require("path");
+const koaBody = require("koa-body");
+const koaStatic = require("koa-static");
+const Koa = require("koa");
 const app = new Koa();
+
+// router
+const todoRouter = require("./routers/todo");
+const messageRouter = require("./routers/messageCode");
+const articleRouter = require("./routers/article");
 
 // 为应用使用中间件
 // 静态文件中间件
-app.use(koaStatic(path.join(__dirname, '../public')));
+app.use(koaStatic(path.join(__dirname, "../public")));
 // 请求体 parse 中间件，用于 parse json 格式请求体
 app.use(koaBody());
 
@@ -25,7 +28,7 @@ app.use(async function errorHandler(ctx, next) {
     // 抛出的错误可以附带 status 字段，代表 http 状态码
     // 若没有提供，则默认状态码为 500，代表服务器内部错误
     ctx.status = err.status || 500;
-    ctx.body = {error: err.message};
+    ctx.body = { error: err.message };
   }
 });
 
@@ -33,5 +36,6 @@ app.use(async function errorHandler(ctx, next) {
 // 使用待办事项业务路由
 app.use(todoRouter);
 app.use(messageRouter);
+app.use(articleRouter);
 
 module.exports = app;
