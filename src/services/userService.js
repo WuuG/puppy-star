@@ -32,6 +32,10 @@ class UserService {
     const result = await userTable.save(userRecord);
     return { status: true, data: result };
   }
+
+  async findOne(id) {
+    return await userTable.where({ _id: ObjectId(id) }).findOne();
+  }
 }
 
 module.exports = new UserService();

@@ -11,7 +11,8 @@ const swaggerRouter = require("./utils/swagger");
 const todoRouter = require("./routers/todo");
 const messageRouter = require("./routers/messageCode");
 const articleRouter = require("./routers/article");
-const userRouter = require("./routers/passport");
+const passportRouter = require("./routers/passport");
+const userRouter = require("./routers/user");
 
 // 为应用使用中间件
 // 静态文件中间件
@@ -53,6 +54,7 @@ app.use(koaSwagger(swaggerOption));
 app.use(todoRouter);
 app.use(messageRouter);
 app.use(articleRouter);
+app.use(passportRouter);
 app.use(userRouter);
 
 module.exports = app;
