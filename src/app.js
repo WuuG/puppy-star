@@ -12,12 +12,18 @@ const todoRouter = require("./routers/todo");
 const messageRouter = require("./routers/messageCode");
 const articleRouter = require("./routers/article");
 const userRouter = require("./routers/passport");
+const fileRouter = require("./routers/fileUpload");
 
 // 为应用使用中间件
 // 静态文件中间件
 app.use(koaStatic(path.join(__dirname, "../public")));
 // 请求体 parse 中间件，用于 parse json 格式请求体
-app.use(koaBody());
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 30 * 1024 * 1024 // 设置上传文件大小最大限制，默认30M
+  }
+}));
 
 /** 若后面的路由抛错，则封装为错误响应返回
  * 错误响应格式为
@@ -54,5 +60,6 @@ app.use(todoRouter);
 app.use(messageRouter);
 app.use(articleRouter);
 app.use(userRouter);
+app.use(fileRouter);
 
 module.exports = app;

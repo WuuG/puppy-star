@@ -10,7 +10,6 @@ class MessageCodeController {
    * 发送验证码
    */
   async sendMessageCode(ctx) {
-    console.log("sendMessageCode ctx = ", ctx.request.body);
     const { phone } = ctx.request.body;
 
     if (!phone) {
