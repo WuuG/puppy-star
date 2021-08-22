@@ -6,6 +6,7 @@ const router = Router({
 
 const userControl = require("../controllers/passport");
 
-router.post("/", userControl.register);
+router.post("/register", userControl.register);
+router.post("/login", userControl.login);
 
 module.exports = router.routes();

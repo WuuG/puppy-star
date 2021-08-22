@@ -11,6 +11,7 @@ class UserService {
    * @login_name 用户名
    * @email 邮箱
    * @gender 性别
+   * @password 密码
    */
   async create(user) {
     const userRecord = {
@@ -18,6 +19,7 @@ class UserService {
       email: user.email,
       phone: user.phone,
       gender: user.gender,
+      password: user.password,
     };
     const uniqueQuery = {
       login_name: user.login_name,
@@ -33,8 +35,13 @@ class UserService {
     return { status: true, data: result };
   }
 
-  async findOne(id) {
+  async findOneById(id) {
     return await userTable.where({ _id: ObjectId(id) }).findOne();
+  }
+
+  async findOneByInfo(query) {
+    console.log(query);
+    return await userTable.where(query).findOne();
   }
 }
 
