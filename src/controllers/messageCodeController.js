@@ -121,7 +121,6 @@ class MessageCodeController {
       };
     } else if (destCode !== inputCode) {
       // 比较短信验证码
-      item.count--;
       ctx.status = 401;
       ctx.response.body = {
         code: -1,
