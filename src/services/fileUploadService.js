@@ -1,4 +1,4 @@
-const inspirecloud = require('@byteinspire/api');
+const inspirecloud = require("@byteinspire/api");
 const fs = require("fs");
 const { Buffer } = require("buffer");
 
@@ -12,12 +12,14 @@ class fileUploadService {
    * @param {File}
    * @returns {Object} res: {url, id}
    */
-  async fileUplaod(userName, {name: fileName, path: filePath, type}) {
+  async fileUplaod({ name: fileName, path: filePath, type }) {
     type = type.split("/")[1];
 
     const data = fs.readFileSync(filePath); // 如果没有指定option，那么返回Buffer
 
-    const res = await inspirecloud.file.upload(fileName, data, {type: type, uploadBy: userName});
+    const res = await inspirecloud.file.upload(fileName, data, {
+      type: type,
+    });
 
     return res;
   }
