@@ -5,8 +5,13 @@ const router = Router({
 });
 
 const userControl = require("../controllers/passport");
+const messageCodeControl = require("../controllers/messageCodeController");
 
-router.post("/register", userControl.register);
+router.post(
+  "/register",
+  messageCodeControl.checkMessageCode,
+  userControl.register
+);
 router.post("/login", userControl.login);
 
 module.exports = router.routes();

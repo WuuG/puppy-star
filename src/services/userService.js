@@ -6,7 +6,7 @@ const { checkUnique } = require("../utils/utils");
 
 class UserService {
   /**
-   * 创建一个用户
+   * 创建一个用户, 理论上这里要进行数据校验的。 但是算了
    * @user 创建一个用户所需的信息
    * @login_name 用户名
    * @email 邮箱
@@ -24,7 +24,6 @@ class UserService {
     const uniqueQuery = {
       login_name: user.login_name,
       email: user.email,
-      phone: user.phone,
     };
 
     const res = await checkUnique(uniqueQuery, userTable);
