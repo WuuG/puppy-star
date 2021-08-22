@@ -35,13 +35,16 @@ class MessageCodeController {
       };
 
       /**将验证码存入数据库 */
-      messageCodeService.save({ userPhone: phone, userMessageCode: code });
+      const record = await messageCodeService.save({
+        userPhone: phone,
+        userMessageCode: code,
+        count: 3,
+      });
+      console.log(record);
     };
 
-    const error = (res) => {
+    const error = () => {
       console.log("发送验证码失败");
-      console.log(res);
-
       ctx.response.body = {
         code: -1,
         message: "获取验证码失败",
@@ -103,9 +106,14 @@ class MessageCodeController {
       return;
     }
 
-    const { userMessageCode: destCode, createdAt } = findItem[0];
+    const item = findItem[0];
+    // 减少验证码的可验证次数
+    item.count--;
+    const { userMessageCode: destCode, createdAt } = item;
 
     if (Date.now() - createdAt.valueOf() > 60000) {
+      item.count = 0;
+      ctx.status = 401;
       ctx.response.body = {
         code: -1,
         message: "短信验证码已过期",
@@ -113,6 +121,8 @@ class MessageCodeController {
       };
     } else if (destCode !== inputCode) {
       // 比较短信验证码
+      item.count--;
+      ctx.status = 401;
       ctx.response.body = {
         code: -1,
         message: "短信验证码校验失败",
@@ -127,9 +137,12 @@ class MessageCodeController {
       await next();
     }
 
-    const result_del = messageCodeService.delete(findItem);
-    if (!result_del) {
-      console.log(`删除用户${phone}的验证码记录失败`);
+    messageCodeService.updateCode(item);
+    if (item.count <= 0) {
+      const result_del = messageCodeService.delete(findItem);
+      if (!result_del) {
+        console.log(`删除用户${phone}的验证码记录失败`);
+      }
     }
   }
 }

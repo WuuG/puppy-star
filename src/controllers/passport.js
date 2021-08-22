@@ -18,7 +18,6 @@ class PassportControl {
 
     // 理论上需要进行密码的加密的，现在就算啦，直接明文放入数据库中。
     const result = await userService.create(user);
-    console.log(result);
     if (!result.status) {
       ctx.status = 400;
       ctx.body = { message: result.message };
@@ -44,7 +43,11 @@ class PassportControl {
       return;
     }
     ctx.status = 200;
-    ctx.body = res;
+    ctx.body = {
+      login_name: res.login_name,
+      _id: res._id,
+      avatar: res.avatar,
+    };
   }
 }
 

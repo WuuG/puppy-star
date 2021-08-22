@@ -1,11 +1,12 @@
-const Router = require('@koa/router');
+const Router = require("@koa/router");
 
 const router = new Router({
-  prefix: '/file/upload'
-})
+  prefix: "/api/upload",
+});
 
-const fileUploadController = require('../controllers/fileUploadController');
+const fileUploadController = require("../controllers/fileUploadController");
+const authControl = require("../controllers/authControl");
 
-router.post('/', fileUploadController.filesUpload);
+router.post("/", authControl.checkPass, fileUploadController.filesUpload);
 
 module.exports = router.routes();
