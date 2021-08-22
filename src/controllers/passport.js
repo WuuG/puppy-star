@@ -10,6 +10,12 @@ class PassportControl {
       ctx.body = { message: "无法注册，请填入必填项！" };
       return;
     }
+    if (user.password === null) {
+      ctx.status = 400;
+      ctx.body = { message: "无法注册，请填入必填项！" };
+      return;
+    }
+    // 理论上需要进行密码的加密的，现在就算啦，直接明文放入数据库中。
     const result = await userService.create(user);
     console.log(result);
     if (!result.status) {
@@ -20,6 +26,8 @@ class PassportControl {
     ctx.status = 200;
     ctx.body = { data: result.data };
   }
+
+  async login(ctx) {}
 }
 
 module.exports = new PassportControl();

@@ -6,12 +6,10 @@ class userControl {
     const user = await userService.findOne(id);
     if (!user) {
       ctx.status = 400;
-      ctx.body = {
-        message: "can not fint the user",
-      };
+      ctx.response.message = "can not fint the user";
       return;
     }
-    ctx.body = { data: user };
+    ctx.body = user;
   }
 }
 

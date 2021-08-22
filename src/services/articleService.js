@@ -15,11 +15,9 @@ class ArticleService {
    * @return {Promise<Array<any>>} 返回待办事项数组
    */
   async getArticle(params) {
-    console.log(params);
-    console.log(chalk.yellow(params.skip));
     const ArticleList = await articleTable
       .where()
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 })
       .skip(params.skip)
       .limit(params.limit)
       .find();
