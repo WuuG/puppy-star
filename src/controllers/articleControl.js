@@ -42,7 +42,7 @@ class ArticleControl {
     // 这个应该可以写成中间件放在路由前的
     try {
       // 规定上传时article表的结构
-      const result = await articleService.create({
+      await articleService.create({
         id,
         text,
         images: images ? [...images] : [],
@@ -54,7 +54,8 @@ class ArticleControl {
         // 0：公开 1:粉丝 2:好友圈 3:仅自己可见 4：群可见
         type: type ? type : 0,
       });
-      ctx.body = { result };
+      ctx.status = 200;
+      ctx.body = { result: "ok" };
     } catch (error) {
       ctx.status = 500;
       ctx.body = { message: errro };

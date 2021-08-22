@@ -5,6 +5,7 @@ const router = Router({
 });
 
 const articleControl = require("../controllers/articleControl");
+const auth = require("../controllers/authControl");
 
 // 组装路由
 /**
@@ -60,7 +61,7 @@ router.get("/", articleControl.listArticle);
  *         description: 成功获取
  *
  */
-router.post("/", articleControl.createArticel);
+router.post("/", auth.checkPass, articleControl.createArticel);
 
 // Koa 的路由需要调用 routes 函数获取实际用于 use 的函数
 module.exports = router.routes(); // router.routes 返回一个函数
